@@ -3,7 +3,43 @@ ssrs_dashboard_eq_digital = [
     dashboard_name = "SSRS Dashboard "
     permissions    = "public_read_write"
 
-    variable_details = {}
+    variable_details = {
+      "0" = {
+        default_values     = ["prd"]
+        is_multi_selection = false
+        variable_name      = "Environment"
+
+        variable_status = true
+        variable_query_details = {
+          "0" = {
+            variable_query = "SELECT uniques(environment) FROM MssqlCustomQuerySample LIMIT MAX WHERE environment IS NOT NULL"
+          }
+        }
+
+        replacement_strategy = "string"
+        variable_title       = "Environment"
+        variable_type        = "nrql"
+      }
+    }
+
+    variable_details = {
+      "0" = {
+        default_values     = ["*"]
+        is_multi_selection = false
+        variable_name      = "Instance"
+
+        variable_status = true
+        variable_query_details = {
+          "0" = {
+            variable_query = "SELECT uniques(instance) FROM MssqlCustomQuerySample LIMIT MAX WHERE instance IS NOT NULL"
+          }
+        }
+
+        replacement_strategy = "string"
+        variable_title       = "Instance"
+        variable_type        = "nrql"
+      }
+    }
 
     pages = {
 
