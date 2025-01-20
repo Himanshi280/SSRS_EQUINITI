@@ -20,10 +20,7 @@ ssrs_dashboard_eq_digital = [
         variable_title       = "Environment"
         variable_type        = "nrql"
       }
-    }
-
-    variable_details = {
-      "0" = {
+      "1" = {
         default_values     = ["*"]
         is_multi_selection = false
         variable_name      = "Instance"
@@ -41,20 +38,22 @@ ssrs_dashboard_eq_digital = [
       }
     }
 
+    
+
     pages = {
 
       "0" = {
         page_name = "Monitors"
 
         widget_area_status        = false
-        widget_bar_status         = false
+        widget_bar_status         = true
         widget_billboard_status   = true
         widget_bullet_status      = false
         widget_funnel_status      = false
         widget_json_status        = false
         widget_heatmap_status     = false
         widget_histogram_status   = false
-        widget_line_status        = false
+        widget_line_status        = true
         widget_markdown_status    = false
         widget_stacked_bar_status = false
         widget_pie_status         = false
@@ -80,14 +79,35 @@ ssrs_dashboard_eq_digital = [
             billboard_title  = "Database status"
             billboard_row    = 2
             billboard_column = 1
-            billboard_width  = 6
+            billboard_width  = 4
             billboard_height = 3
             billboard_query  = "FROM MssqlCustomQuerySample SELECT latest(DatabaseStatus) WHERE label.query='dbstate' AND DatabaseName='ReportServer' FACET DatabaseName, instance"
           },
           
         },
 
-        
+        bar = {
+          "0" = {
+            bar_title  = "Count of Failed Execution"
+            bar_row    = 2
+            bar_column = 5
+            bar_width  = 4
+            bar_height = 3
+            bar_query  = "FROM MssqlCustomQuerySample select count(FailedExecutions) FACET instance where label.query='reportexec'"
+          },
+          
+        },
+
+        line = {
+          "0" = {
+            line_title  = "Average Execution Minutes  by Instance"
+            line_row    = 2
+            line_column = 9
+            line_width  = 4
+            line_height = 3
+            line_query  = "FROM MssqlCustomQuerySample select average(ExecutionMinute)  FACET instance where label.query='reportexec' TIMESERIES"
+          },
+        }
 
       },
 
