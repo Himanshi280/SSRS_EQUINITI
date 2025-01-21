@@ -13,21 +13,21 @@ variable "account_region_EQ_Digital" {
 
 //----------------------
 
-variable "ssrs_dashboard_eq_digital" {
-  type = any
-}
+# variable "ssrs_dashboard_eq_digital" {
+#   type = any
+# }
 
 //---------------------------------------
 #Alerts
 
-variable "alert_policy_ssrs_eq_digital" {
-  type = any
-}
+# variable "alert_policy_ssrs_eq_digital" {
+#   type = any
+# }
 
-variable "incident_preference_ssrs_eq_digital" {
-  type = any
-}
+# variable "incident_preference_ssrs_eq_digital" {
+#   type = any
+# }
 
-variable "nrql_alert_condition_details_ssrs_eq_digital" {
-  type = any
-}
+# variable "nrql_alert_condition_details_ssrs_eq_digital" {
+#   type = any
+# }

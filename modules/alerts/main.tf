@@ -40,4 +40,10 @@ resource "newrelic_nrql_alert_condition" "alert_condition" {
       threshold_occurrences = each.value.warning_threshold_occurrences
     }
   }
+
+  # Lost signal related parameters
+  expiration_duration           =  each.value.network_lost_signals?each.value.expiration_duration:null
+  open_violation_on_expiration  =  each.value.network_lost_signals?each.value.open_violation_on_expiration:null
+  close_violations_on_expiration =  each.value.network_lost_signals?each.value.close_violations_on_expiration:null
+  #ignore_on_expected_termination = false
 }

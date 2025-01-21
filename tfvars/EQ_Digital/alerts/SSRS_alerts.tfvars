@@ -15,13 +15,17 @@ nrql_alert_condition_details_ssrs_eq_digital = {
     aggregation_method              = "event_flow"
     aggregation_delay               = 120
     baseline_direction              = "upper_only"
-    query                           = "FROM MssqlCustomQuerySample SELECT count(*) WHERE DatabaseStatus!= 'ONLINE' AND label.query='dbstate' AND DatabaseName='ReportServer' FACET DatabaseName,DatabaseStatus"
+    query                           = "FROM MssqlCustomQuerySample SELECT uniqueCount(instance) WHERE DatabaseStatus= 'ONLINE' AND label.query='dbstate' AND DatabaseName='ReportServer' FACET DatabaseName,DatabaseStatus,instance"
     warning                         = false
     critical                        = true
-    critical_operator               = "above_or_equals"
+    critical_operator               = "below"
     critical_threshold              = 1
     critical_threshold_duration     = 300
     crirtical_threshold_occurrences = "all"
+    network_lost_signals           = true
+    expiration_duration            = 1800
+    open_violation_on_expiration   = true
+    close_violations_on_expiration = true
   },
   "1" = {
     type                            = "static"
@@ -35,13 +39,17 @@ nrql_alert_condition_details_ssrs_eq_digital = {
     aggregation_method              = "event_flow"
     aggregation_delay               = 120
     baseline_direction              = "upper_only"
-    query                           = "SELECT count(*) FROM MssqlCustomQuerySample WHERE DatabaseStatus!='ONLINE' AND label.query='dbstate' AND DatabaseName='ReportServerTempDB 'FACET DatabaseStatus,DatabaseName,hostname,entityGuid"
+    query                           = "SELECT uniqueCount(instance) FROM MssqlCustomQuerySample WHERE DatabaseStatus ='ONLINE' AND label.query='dbstate' AND DatabaseName='ReportServerTempDB 'FACET DatabaseStatus,DatabaseName,hostname"
     warning                         = false
     critical                        = true
-    critical_operator               = "above_or_equals"
+    critical_operator               = "below"
     critical_threshold              = 1
     critical_threshold_duration     = 300
     crirtical_threshold_occurrences = "all"
+    network_lost_signals           = true
+    expiration_duration            = 1800
+    open_violation_on_expiration   = true
+    close_violations_on_expiration = true
   },
   "2" = {
     type                            = "static"
@@ -62,6 +70,7 @@ nrql_alert_condition_details_ssrs_eq_digital = {
     critical_threshold              = 1
     critical_threshold_duration     = 300
     crirtical_threshold_occurrences = "all"
+    network_lost_signals           = false
   },
   "3" = {
     type                            = "static"
@@ -82,6 +91,7 @@ nrql_alert_condition_details_ssrs_eq_digital = {
     critical_threshold              = 1
     critical_threshold_duration     = 300
     crirtical_threshold_occurrences = "all"
+    network_lost_signals           = false
   },
   "4" = {
     type                            = "static"
@@ -102,5 +112,6 @@ nrql_alert_condition_details_ssrs_eq_digital = {
     critical_threshold              = 1
     critical_threshold_duration     = 300
     crirtical_threshold_occurrences = "all"
+    network_lost_signals           = false
   },
 }  

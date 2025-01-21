@@ -13,3 +13,7 @@ provider "newrelic" {
   api_key    = var.account_api_key_EQ_Digital
   region     = var.account_region_EQ_Digital
 }
+
+variable "newrelic_accountid" {
+  
+}
